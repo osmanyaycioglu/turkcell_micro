@@ -1,9 +1,12 @@
 package com.training.turkcell;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,6 +77,45 @@ public class MyFirstRest {
         this.myComponent.setSurname(surname);
         this.myComponent.setAge(age);
         return "Set all :  " + this.myComponent;
+    }
+
+    @PostMapping("/setall5")
+    public MyComponent setAll5(@RequestBody final MyComponent myC) {
+        this.myComponent.setName(myC.getName());
+        this.myComponent.setSurname(myC.getSurname());
+        this.myComponent.setAge(myC.getAge());
+        return this.myComponent;
+    }
+
+    @PostMapping(value = "/setall6",
+                 consumes = {
+                              MediaType.APPLICATION_JSON_VALUE,
+                              MediaType.APPLICATION_XML_VALUE
+                 },
+                 produces = {
+                              MediaType.APPLICATION_JSON_VALUE,
+                              MediaType.APPLICATION_XML_VALUE
+                 })
+    public MyComponent xyz6(@RequestBody final MyComponent myC) {
+        this.myComponent.setName(myC.getName());
+        this.myComponent.setSurname(myC.getSurname());
+        this.myComponent.setAge(myC.getAge());
+        return this.myComponent;
+    }
+
+    @PostMapping("/setall7")
+    public MyComponent setAll7(@Validated @RequestBody final MyComponent myC) throws MyException {
+        if (myC.getAge() == 37) {
+            throw new IllegalArgumentException("Bu 37 olamaz");
+        }
+        if (myC.getAge() == 38) {
+            throw new MyException("Bu 38 olamaz");
+        }
+
+        this.myComponent.setName(myC.getName());
+        this.myComponent.setSurname(myC.getSurname());
+        this.myComponent.setAge(myC.getAge());
+        return this.myComponent;
     }
 
 

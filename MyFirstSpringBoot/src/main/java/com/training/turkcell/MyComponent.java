@@ -1,12 +1,23 @@
 package com.training.turkcell;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.stereotype.Component;
 
 @Component
+@XmlRootElement
 public class MyComponent {
 
     private String name = "Osman";
+    @NotEmpty(message = "Surname boş olamaz")
+    @Size(min = 2, max = 100, message = "Surname min 2 max 100 olabilir")
     private String surname;
+    @Min(value = 10, message = "Age 10 dan küçük olamaz")
+    @Max(value = 150, message = "Age 150 den büyük olamaz")
     private int    age;
 
     public String getName() {
