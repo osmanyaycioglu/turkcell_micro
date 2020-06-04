@@ -1,18 +1,13 @@
-package com.training.turkcell;
+package com.training.turkcell.rest;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import org.springframework.stereotype.Component;
 
 import com.training.turkcell.validation.StringCheck;
 
-@Component
-@XmlRootElement
-public class MyComponent {
+public class Person {
 
     @StringCheck(str = "eh", message = "Name içinde eh geçemez")
     private String name = "Osman";
