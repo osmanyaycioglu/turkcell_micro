@@ -10,5 +10,9 @@ public class MyException extends Exception {
         this.msg = msgParam;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
 
 }
