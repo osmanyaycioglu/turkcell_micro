@@ -2,18 +2,16 @@ package com.training.turkcell;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
+@EnableZuulProxy
 @EnableEurekaClient
-@EnableHystrix
-@EnableCircuitBreaker
-public class CldMsEmployeeApplication {
+public class CldApiGatewayApplication {
 
     public static void main(final String[] args) {
-        SpringApplication.run(CldMsEmployeeApplication.class,
+        SpringApplication.run(CldApiGatewayApplication.class,
                               args);
     }
 
